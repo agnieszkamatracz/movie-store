@@ -49,6 +49,31 @@ class Film
      */
     private $aktorzy;
 
+    /**
+     * Jednokierunkowe połączenie z tabelą kategoria, w razie usunięcia kategori zmieni na null
+     * @OneToOne(targetEntity="Kategoria")
+     * @JoinColumn(name="kategoria_id", referencedColumnName="id", onDelete="SET NULL")
+     **/
+    private $kategoria;
+
+    //Ustawiamy kategorie
+    public function setKategoria($kategoria)
+    {
+        $this->kategoria = $kategoria;
+
+        return $this;
+    }
+
+    public function getKategoria()
+    {
+        return $this->kategoria;
+    }
+
+    /*
+    Wszystko niżej wygnerowało symfony
+    *
+
+
 
     /**
      * Get id
