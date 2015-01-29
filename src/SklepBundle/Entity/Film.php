@@ -51,8 +51,8 @@ class Film
 
     /**
      * Jednokierunkowe połączenie z tabelą kategoria, w razie usunięcia kategori zmieni na null
-     * @OneToOne(targetEntity="Kategoria")
-     * @JoinColumn(name="kategoria_id", referencedColumnName="id", onDelete="SET NULL")
+     * @ORM\OneToOne(targetEntity="Kategoria")
+     * @ORM\JoinColumn(name="kategoria_id", referencedColumnName="id", onDelete="SET NULL")
      **/
     private $kategoria;
 
