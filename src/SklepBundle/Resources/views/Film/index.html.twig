@@ -5,15 +5,25 @@
     {% block malyTytul %}Wszystkie filmy{% endblock %}
 
 {% block body -%}
+
     {% for entity in entities %}
         <div class="row">
-            <div class="col-md-7">
+            
+            <div class="thumbnail col-md-7">
                 <a href="#">
                     <img class="img-responsive" src="http://placehold.it/700x300" alt="">
                 </a>
+                <div class="caption post-content">
+                <h3> {{ entity.tytul }} </h3>
+                </div>
             </div>
             <div class="col-md-5">
-                <h3>{{ entity.tytul }}</h3>
+                <ul class="breadcrumb">
+                <li><a href="#">{{ entity.kategoria }}</a> 
+                    <span class="divider">/</span></li>
+                <li class="active"> <strong>{{ entity.tytul }} </strong></li>
+                </ul>
+                
                 <h4>Cena ${{ entity.cena }}</h4>
                 <p>{{ entity.opis }} </p>
                 <p> Aktorzy: {{ entity.aktorzy }}</p>

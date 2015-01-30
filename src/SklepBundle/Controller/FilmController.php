@@ -56,7 +56,7 @@ class FilmController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('film_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('glowna'));
         }
 
         return array(
