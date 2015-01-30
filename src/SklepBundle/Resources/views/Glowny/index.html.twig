@@ -86,9 +86,12 @@
     <script src="{{ asset('bundles/sklep/js/jquery.js') }}"></script>
     <script src="{{ asset('bundles/sklep/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">
+    // ładujemy podpowiedzi
     $('[data-toggle="tooltip"]').tooltip();
-
-
+    // do odświeżania dynamicznych okien modalnych
+    $('body').on('hidden.bs.modal', '#zamowienie_new', function () {
+      $(this).removeData('bs.modal');
+    });
     </script>
 
 

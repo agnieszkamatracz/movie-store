@@ -13,7 +13,7 @@
                 
                 <div class="thumbnail col-md-7">
                     <a href="#">
-                        <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                        <img class="img-responsive" src="http://lorempixel.com/650/250/?random={{ random(100) }} " alt="">
                     </a>
                     <div class="caption post-content">
                     <h3> {{ entity.tytul }} </h3>
@@ -30,7 +30,8 @@
                     <h4>Cena ${{ entity.cena }}</h4>
                     <p>{{ entity.opis }} </p>
                     <p> Aktorzy: {{ entity.aktorzy }}</p>
-                    <a class="btn btn-primary" href="{{ path('zamowienie_new', { 'id': entity.id }) }}">Zakup <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <a class="btn btn-primary" href="{{ path('zamowienie_new', { 'id': entity.id }) }}" data-toggle="modal"
+data-target="#zamowienie_new">Zakup <span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
         {% endfor %}
@@ -53,6 +54,16 @@
                 </div>
              
     {% endif %}
+{# modalne okno #}
+<div class="modal fade" id="zamowienie_new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog">
+    <div class="modal-content">
+
+
+
+         
+    </div>
+  </div>
+</div></div>
 {% endblock %}
 {#
 {% block body -%}

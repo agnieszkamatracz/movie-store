@@ -1,15 +1,15 @@
 {% extends 'SklepBundle:Glowny:index.html.twig' %}
     {% block tytul %}Zakupione filmy{% endblock %}
     {% block duzyTytul %}Zakupione filmy{% endblock %}
-    {% block malyTytul %}Moje filmy{% endblock %}
+    {% block malyTytul %} {{ czyje }} {% endblock %}
 {% block body -%}
 
 {% if entities|length %}
-    {% for entity in entities %}
-        {{ dump(entity) }}
     <div class="container">
-        <div class="row clearfix">
-            <div class="col-md-5 column">
+    {% for entity in entities %}
+        
+        <div class="row">
+            <div class="col-md-5 column{% if loop.index0 is odd %} pull-right{% endif %}">
                 <div class="embed-responsive embed-responsive-16by9">
                   <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8"></iframe>
                 </div>
@@ -19,28 +19,51 @@
                     <table class="invoice-head">
                         <tbody>
                             <tr>
-                                <td class="pull-right"><strong>Klient #</strong></td>
-                                <td> Nazwa Klienta </td>
+                                <td class=""><strong>Klient</strong></td>
+                                <td> {{ entity.uzytkownik.username }} </td>
                             </tr>
                             <tr>
-                                <td class="pull-right"><strong>Faktura #</strong></td>
-                                <td> 2340 </td>
+                                <td ><strong>Email</strong></td>
+                                <td> {{ entity.uzytkownik.email }} </td>
                             </tr>
                             <tr>
-                                <td class="pull-right"><strong>Czas zakupu </strong></td>
-                                <td>10-08-2013</td>
+                                <td ><strong>Faktura</strong></td>
+                                <td> {{ random(999999) }} </td>
                             </tr>
                             <tr>
-                                <td class="pull-right"><strong>Koszt </strong></td>
-                              <td> 20.00 $</td>
+                                <td ><strong>Czas&nbsp;zakupu</strong></td>
+                                <td>{{ entity.data|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Koszt</strong></td>
+                              <td> {{ entity.film.cena }} $</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Film </strong></td>
+                              <td> {{ entity.film.tytul }} $</td>
+                            </tr>
+
+                            <tr>
+                                <td ><strong>Aktorzy</strong></td>
+                              <td> {{ entity.film.aktorzy }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Kategoria</strong></td>
+                              <td> {{ entity.film.kategoria.nazwa }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Opis</strong></td>
+                              <td> {{ entity.film.opis }}</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
-    </div>
+        <hr/>
+ 
     {% endfor %}
+</div>
 {% else %}
 <div class="jumbotron">
  

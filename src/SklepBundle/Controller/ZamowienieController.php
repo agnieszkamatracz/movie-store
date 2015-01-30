@@ -19,7 +19,7 @@ class ZamowienieController extends Controller
 {
     
     /**
-     * Lists all Zamowienie entities.
+     * Szukamy filmów, ktore my kupiliśmy
      *
      * @Route("/", name="zamowienie")
      * @Method("GET")
@@ -28,12 +28,27 @@ class ZamowienieController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-        $response = new Response();
-        $response->headers->set('x-frame-options', 'deny');
-        $response->send();
+        $entities = $em->getRepository('SklepBundle:Zamowienie')->findByUzytkownik($this->getUser());
+
+        return array(
+            'czyje' => 'Moje filmy',
+            'entities' => $entities,
+        );
+    }
+    /**
+     * Lists all Zamowienie entities.
+     *
+     * @Route("/all", name="zamowienia_wszystkie")
+     * @Method("GET")
+     * @Template("SklepBundle:Zamowienie:index.html.twig")
+     */
+    public function indexAllAction()
+    {
+        $em = $this->getDoctrine()->getManager();
         $entities = $em->getRepository('SklepBundle:Zamowienie')->findAll();
 
         return array(
+            'czyje' => 'Zamówienia wszystkich użytkowników',
             'entities' => $entities,
         );
     }
@@ -56,7 +71,7 @@ class ZamowienieController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('zamowienie_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('zamowienie'));
         }
 
         return array(
@@ -101,7 +116,8 @@ class ZamowienieController extends Controller
         $film = $em->getRepository('SklepBundle:Film')->findOneById($id);
         // Ustaw film
         $entity->setFilm($film);
-
+        //Ustaw datę
+        $entity->setData(new \DateTime());
 
         $form   = $this->createCreateForm($entity);
 
