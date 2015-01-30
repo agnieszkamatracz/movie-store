@@ -104,27 +104,4 @@ class Zamowienie
     {
         return $this->filmId;
     }
-
-    /**
-     * Set uzytkownik
-     *
-     * @param \SklepBundle\Entity\Uzytkownik $uzytkownik
-     * @return Zamowienie
-     */
-    public function setUzytkownik(\SklepBundle\Entity\Uzytkownik $uzytkownik = null)
-    {
-        $this->uzytkownik = $uzytkownik;
-
-        return $this;
-    }
-
-    /**
-     * Get uzytkownik
-     *
-     * @return \SklepBundle\Entity\Uzytkownik 
-     */
-    public function getUzytkownik()
-    {
-        return $this->uzytkownik;
-    }
 }
