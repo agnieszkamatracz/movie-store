@@ -1,0 +1,107 @@
+
+<!-- PASEK NAWIGACJI -->
+<div class="container">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+        <a class="navbar-brand" href="{{ path('glowna') }}">Strona Glowna</a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+            <li class="dropdown">
+                 <a href="#" data-toggle="dropdown" class="dropdown-toggle">Kategoria<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    {# ładujemy kategorie #}
+                    {{ render(controller('SklepBundle:Kategoria:index')) }}
+                    <li class="divider"> </li>
+                    {# sprawdź czy użytkownik jest zalogowany, jeśli tak wyświetl rozszrzeone menu #}
+                    {% if zalogowany == false %}
+                        <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować jako administrator!">
+                            <a class="disabled" href="#">Dodaj nową</a></li>
+                    {% else %}
+                        <li><a href="#" data-toggle="modal" data-target="#nowaKategoria">Dodaj nową</a></li>
+                    {% endif %} 
+                </ul>
+            </li>
+        <li class="dropdown">
+           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Film<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    <li><a href="{{ path('film') }}">Przeglądaj wszystkie</a></li>
+                    <li class="divider"> </li>
+                    {% if zalogowany == false %}
+                        <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować jako administrator!"><a class='disabled'>Dodaj nowy</a></li>
+                    {% else %}
+                    <li><a data-toggle="modal" data-target="#nowyFilm" href="#">Dodaj nowy</a></li>
+                    {% endif %}
+                        <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Strona w trakcie przygotowań"><a class="disabled">Zarządzaj</a></li>
+                </ul>
+        </li>
+
+        <li class="dropdown">
+           <a href="#" data-toggle="dropdown" class="dropdown-toggle">Zamówienia<strong class="caret"></strong></a>
+                <ul class="dropdown-menu">
+                    {% if zalogowany == false %}
+                        <li class="disabled"><a class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować!" href="{{ path('zamowienie') }}">Przeglądaj moje</a></li>
+                    {% else %}
+                        <li><a href="{{ path('zamowienie') }}">Przeglądaj moje</a></li>
+                    {% endif %}
+                    <li class="divider"> </li>
+                    {% if zalogowany == false %}
+                        <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować jako administrator!"><a class='disabled'>Przeglądaj wszystkie</a></li>
+
+                    {% else %}
+                    <li><a href="{{ path('zamowienia_wszystkie') }}">Przeglądaj wszystkie</a></li>
+                    {% endif %}
+                    <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Strona w trakcie przygotowań"><a class="disabled">Zarządzaj</a></li>
+                </ul>
+        </li>
+
+        </ul>
+<ul class="nav navbar-nav pull-right">
+                        
+        <li class="dropdown" id="menuLogin">
+            <a class="dropdown-toggle" href="#" data-toggle="dropdown" id="navLogin">Konto<strong class="caret"></strong></a>
+            <div class="dropdown-menu pull-right" id="userDropdown" style="width:450px;">
+                <div id="userPanel" class="modal-body">
+                {% if zalogowany %}
+                    <form><ul class="nav nav-tabs">
+                            <li class="active"><a href="#profil" data-toggle="tab">Moj profil</a></li>
+                            <li><a href="#changePassword" data-toggle="tab">Zmien dane</a></li>
+                          </ul></form>
+                   <div id="myTabContent" class="tab-content">      
+                    <div class="tab-pane active in" id="profil">     
+                        {% render url('fos_user_profile_show') %}
+                    </div>
+                    <div class="tab-pane fade" id="changePassword">
+                        {% render url('fos_user_change_password') %}
+                    </div>
+                </div>
+                {% else %}
+                      
+                          <form><ul class="nav nav-tabs">
+                            <li class="active"><a href="#login" data-toggle="tab">Zaloguj</a></li>
+                            <li><a href="#create" data-toggle="tab">Zarejestruj</a></li>
+                          </ul></form>
+                          <div id="myTabContent" class="tab-content">
+                            <div class="tab-pane active in" id="login">
+                                {# ładujemy modalnie strone logowania #}
+                              {% render url('fos_user_security_login') %}
+                                
+                            </div>
+                            <div class="tab-pane fade" id="create">
+                                {# ładujemy modalnie strone rejestracji #}
+                                  {% render url('fos_user_registration_register') %}
+                                
+                            </div>
+                        </div>
+                    
+                {% endif %}
+                </div>
+                </div>
+            </div>
+        </li>
+                    </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</div>
+<!-- /.container -->

@@ -29,12 +29,11 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
-    bundles:        [ ]
+    bundles:        [ SklepBundle ]
     #java: /usr/bin/java
     filters:
         cssrewrite: ~
@@ -75,3 +74,8 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: SklepBundle\Entity\Uzytkownik
+services:
+    custom.twig.extension.debug:
+        class: Twig_Extension_Debug
+        tags:
+             - { name: 'twig.extension' }

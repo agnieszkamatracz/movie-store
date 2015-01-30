@@ -1,0 +1,121 @@
+{% extends 'SklepBundle:Glowny:index.html.twig' %}
+    {% block tytul %}Zakupione filmy{% endblock %}
+    {% block duzyTytul %}Zakupione filmy{% endblock %}
+    {% block malyTytul %} {{ czyje }} {% endblock %}
+{% block body -%}
+
+{% if entities|length %}
+    <div class="container">
+    {% for entity in entities %}
+        
+        <div class="row">
+            <div class="col-md-5 column{% if loop.index0 is odd %} pull-right{% endif %}">
+                <div class="embed-responsive embed-responsive-16by9">
+                  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8"></iframe>
+                </div>
+            </div>
+            <div class="col-md-7 column">
+                <div class="span4 well">
+                    <table class="invoice-head">
+                        <tbody>
+                            <tr>
+                                <td class=""><strong>Klient</strong></td>
+                                <td> {{ entity.uzytkownik.username }} </td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Email</strong></td>
+                                <td> {{ entity.uzytkownik.email }} </td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Faktura</strong></td>
+                                <td> {{ random(999999) }} </td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Czas&nbsp;zakupu</strong></td>
+                                <td>{{ entity.data|date('Y-m-d H:i:s') }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Koszt</strong></td>
+                              <td> {{ entity.film.cena }} $</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Film </strong></td>
+                              <td> {{ entity.film.tytul }} $</td>
+                            </tr>
+
+                            <tr>
+                                <td ><strong>Aktorzy</strong></td>
+                              <td> {{ entity.film.aktorzy }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Kategoria</strong></td>
+                              <td> {{ entity.film.kategoria.nazwa }}</td>
+                            </tr>
+                            <tr>
+                                <td ><strong>Opis</strong></td>
+                              <td> {{ entity.film.opis }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <hr/>
+ 
+    {% endfor %}
+</div>
+{% else %}
+<div class="jumbotron">
+ 
+  <p>Brak zakupionych filmów</p>
+  <p><a class="btn btn-primary btn-lg" href="{{ path('glowna') }}" role="button">Przeglądaj flimy</a></p>
+</div>
+{% endif %}
+
+
+
+{% endblock %}
+{#
+{% extends '::base.html.twig' %}
+
+
+    <h1>Zamowienie list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data</th>
+                <th>Filmid</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('zamowienie_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{% if entity.data %}{{ entity.data|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.filmId }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('zamowienie_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('zamowienie_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('zamowienie_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}#}

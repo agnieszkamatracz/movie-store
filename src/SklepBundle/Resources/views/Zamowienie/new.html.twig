@@ -1,0 +1,97 @@
+{# tworzymy okno modalne #}
+{{ form_start(form) }}
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="text-danger fa fa-times"></i></button>
+        <h4 class="modal-title" id="myModalLabel"><i class="text-muted fa fa-shopping-cart"></i> Zakup nowego filmu <strong>{{ form.vars.value.film.tytul }}</strong>  </h4>
+      </div>  
+
+      <div class="modal-body">
+  
+        <table class="pull-left col-md-8 ">
+             <tbody>
+                 <tr>
+                     <td class="h6"><strong>Nazwa użytkownika</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.uzytkownik.username }}</td>
+                 </tr>
+                 
+                 <tr>
+                     <td class="h6"><strong>E-mail</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.uzytkownik.email }}</td>
+                 </tr>
+                 
+                 <tr>
+                     <td class="h6"><strong>Tytuł</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.film.tytul }}</td>
+                 </tr>
+                 
+                 <tr>
+                     <td class="h6"><strong>Cena</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.film.tytul }}</td>
+                 </tr>
+                 
+                 <tr>
+                     <td class="h6"><strong>Aktorzy</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.film.aktorzy }}</td>
+                 </tr>
+                 
+                 <tr>
+                     <td class="h6"><strong>Data zamówienia</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.data|date('Y-m-d H:i:s') }}</td>
+                 </tr>  
+
+                 <tr>
+                     <td class="h6"><strong>Kategoria</strong></td>
+                     <td> </td>
+                     <td class="h5">{{ form.vars.value.film.kategoria.nazwa }}</td>
+                 </tr>                            
+
+    
+                
+                 <tr>
+                     <td class="btn-mais-info text-primary">
+                         <i class="open_info fa fa-plus-square-o"></i>
+                         <i class="open_info hide fa fa-minus-square-o"></i> opis filmu
+                     </td>
+                     <td> </td>
+                     <td class="h5"></td>
+                 </tr> 
+
+             </tbody>
+        </table>
+                 
+           
+        <div class="col-md-4"> 
+            <img src="http://lorempixel.com/150/150/technics/" alt="teste" class="img-thumbnail">  
+        </div>
+        
+        <div class="clearfix"></div>
+       <p class="open_info hide">{{ form.vars.value.film.opis }}</p>
+      </div>
+        
+
+      <div class="modal-footer">       
+          
+        <div class="text-right col-md-3">
+            Koszt: 
+            <span class="h3 text-muted"><strong>{{ form.vars.value.film.cena }} </strong></span></span> 
+        </div> 
+          
+         <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+        <button type="submit" class="btn btn-primary">Potwierdź zakup</button>
+ 	</div>
+<div style="display:none">  {{ form(form) }} </div>  
+{{ form_end(form) }}
+
+<script>
+$('.btn-mais-info').on('click', function(event) {
+        $( '.open_info' ).toggleClass( "hide" );
+    })
+
+</script>

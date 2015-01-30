@@ -1,0 +1,114 @@
+{# rozwinięcie głownego layout #}
+{% extends 'SklepBundle:Glowny:index.html.twig' %}
+    {% block tytul %}Strona główna{% endblock %}
+    {% block duzyTytul %}Strona główna{% endblock %}
+    {% block malyTytul %}Wszystkie filmy{% endblock %}
+
+{% block body -%}
+
+    {% if entities|length %}
+        {% for entity in entities %}
+
+            <div class="row">
+                
+                <div class="thumbnail col-md-7">
+                    <a href="#">
+                        <img class="img-responsive" src="http://lorempixel.com/650/250/?random={{ random(100) }} " alt="">
+                    </a>
+                    <div class="caption post-content">
+                    <h3> {{ entity.tytul }} </h3>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+
+                    <li><a href="{{ path('film_id', {'id' : entity.kategoria.id }) }}">{{ entity.kategoria }}</a> 
+                        <span class="divider">/</span></li>
+                    <li class="active"> <strong>{{ entity.tytul }} </strong></li>
+                    </ul>
+                    
+                    <h4>Cena ${{ entity.cena }}</h4>
+                    <p>{{ entity.opis }} </p>
+                    <p> Aktorzy: {{ entity.aktorzy }}</p>
+                    <a class="btn btn-primary" href="{{ path('zamowienie_new', { 'id': entity.id }) }}" data-toggle="modal"
+data-target="#zamowienie_new">Zakup <span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+                <div class="container">
+                    <div class="jumbotron col-md-8" >
+                        <h1> Witaj na stronie sklepu</h1>
+                        <p>
+                            Nie ma w tej kategorii dodanych żadnych filmów. Dodaj kategorie i pierwszy film aby zacząć korzystać ze sklepu.
+                        </p>
+                        <p>
+                            {% if zalogowany %}
+                                <a class="btn btn-primary btn-large" data-toggle="modal" data-target="#nowyFilm" href="#">Dodaj nowy</a> <a class="btn btn-primary btn-large" data-toggle="modal" data-target="#nowaKategoria" href="#">Dodaj kategorie</a>
+                            {% else %}
+                                <a class="btn btn-primary btn-large disabled" data-toggle="tooltip" data-title="Najpierw się zaloguj jako administrator!" ref="#">Dodaj nowy</a>
+                                <a class="btn btn-primary btn-large disabled" data-toggle="tooltip" data-title="Najpierw się zaloguj jako administrator!" ref="#">Dodaj kategorie</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+             
+    {% endif %}
+{# modalne okno #}
+<div class="modal fade" id="zamowienie_new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog">
+    <div class="modal-content">
+
+
+
+         
+    </div>
+  </div>
+</div></div>
+{% endblock %}
+{#
+{% block body -%}
+    <h1>Film list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Tytul</th>
+                <th>Cena</th>
+                <th>Opis</th>
+                <th>Aktorzy</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('film_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
+                <td>{{ entity.tytul }}</td>
+                <td>{{ entity.cena }}</td>
+                <td>{{ entity.opis }}</td>
+                <td>{{ entity.aktorzy }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('film_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('film_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('film_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}
+#}

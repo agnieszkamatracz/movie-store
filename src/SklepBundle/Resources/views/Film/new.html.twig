@@ -1,0 +1,67 @@
+{# okno modalne nowego filmu #}
+
+<div class="modal fade" id="nowyFilm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title">Nowa film</h4>
+      </div>
+      <div class="modal-body">
+
+		   		 {# RENDEROWANIE NOWEJ FORM #}
+			    {# ŁADNIE SFORMATOWANA #}		    			 
+			    {{ form_start(form) }}
+				   {{ form_row(form.tytul, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj tytuł'
+					}) }}
+
+				   {{ form_row(form.opis, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj opis'
+					}) }}
+
+				   {{ form_row(form.cena, {
+				    'attr': { 'class': 'form-control' , 'type' : 'number', 'step' : '0.01'},
+				    'label': 'Podaj cene'
+					}) }}
+
+				   {{ form_row(form.aktorzy, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj aktorów'
+					}) }}
+
+				   {{ form_row(form.kategoria, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Wybierz kategorie'
+					}) }}
+
+				{# niech nie pokazuje submit'a przeslemy forme przez Javascirpt #}
+				{{ form_row(form.submit, {
+					'attr': { 'style': 'display:none' }
+				}) }}
+
+			    {{ form_end(form) }}
+
+			</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary" id="dodajFilm">Dodaj nowy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$('#dodajFilm').click(function() {
+    // Utwórz nową kategorie
+    $('form[name="{{ form.vars.name }}"] button').click();
+});
+
+ $('form[name="{{ form.vars.name }}"] input[name="{{ form.cena.vars.full_name }}"]').attr('type', 'number');
+ $('form[name="{{ form.vars.name }}"] select[name="{{ form.kategoria.vars.full_name }}"]').val('1');
+</script>

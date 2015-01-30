@@ -1,0 +1,47 @@
+{# okno modalne nowej kategorii #}
+
+<div class="modal fade" id="nowaKategoria" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title">Nowa kategoria</h4>
+      </div>
+      <div class="modal-body">
+
+		   		 {# RENDEROWANIE NOWEJ FORM #}
+			    {# ŁADNIE SFORMATOWANA #}		    			 
+			    {{ form_start(form) }}
+				   {{ form_row(form.nazwa, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj nazwę kategorii',
+				    'required' : 'required'
+					}) }}
+					
+					{# niech nie pokazuje submit'a przeslemy forme przez Javascirpt #}
+				{{ form_row(form.submit, {
+					'attr': { 'style': 'display:none' }
+				}) }}
+
+			    {{ form_end(form) }}
+
+			</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary" id="dodajNowa">Dodaj nową</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$('#dodajNowa').click(function() {
+  
+    // Utwórz nową kategorie
+    $('form[name="{{ form.vars.name }}"] button').click();
+  
+});
+</script>
