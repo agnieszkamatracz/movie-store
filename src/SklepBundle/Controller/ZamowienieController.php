@@ -47,6 +47,8 @@ class ZamowienieController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Zamowienie();
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $entity->setUzytkownik($user);
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -93,6 +95,8 @@ class ZamowienieController extends Controller
     public function newAction()
     {
         $entity = new Zamowienie();
+        
+        $entity->setUzytkownik($this->getUser());
         $form   = $this->createCreateForm($entity);
 
         return array(

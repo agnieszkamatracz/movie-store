@@ -16,8 +16,8 @@ class ZamowienieType extends AbstractType
     {
         $builder
             ->add('data')
-            ->add('filmId')
-            ->add('uzytkownik')
+            ->add('filmId', 'hidden')
+            ->add('uzytkownik', 'hidden')
         ;
     }
     
