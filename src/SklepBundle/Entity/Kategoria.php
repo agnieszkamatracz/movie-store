@@ -27,7 +27,10 @@ class Kategoria
      * @ORM\Column(name="nazwa", type="string", length=255)
      */
     private $nazwa;
-
+    function __toString()
+    {
+        return $this->nazwa;
+    }
 
     /**
      * Get id
