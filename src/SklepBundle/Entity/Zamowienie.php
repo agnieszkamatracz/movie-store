@@ -29,11 +29,11 @@ class Zamowienie
     private $data;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="film_id", type="object")
-     */
-    private $filmId;
+     * Jednokierunkowe połączenie z tabelą film, w razie usunięcia kategori zmieni na null
+     * @ORM\OneToOne(targetEntity="Film")
+     * @ORM\JoinColumn(name="film_id", referencedColumnName="id", onDelete="SET NULL")
+     **/
+    private $film;
 
     /**
      * Jeden użytkownik może wiele zamówień
@@ -82,28 +82,6 @@ class Zamowienie
         return $this->data;
     }
 
-    /**
-     * Set filmId
-     *
-     * @param \stdClass $filmId
-     * @return Zamowienie
-     */
-    public function setFilmId($filmId)
-    {
-        $this->filmId = $filmId;
-
-        return $this;
-    }
-
-    /**
-     * Get filmId
-     *
-     * @return \stdClass 
-     */
-    public function getFilmId()
-    {
-        return $this->filmId;
-    }
 
     /**
      * Set uzytkownik
@@ -126,5 +104,28 @@ class Zamowienie
     public function getUzytkownik()
     {
         return $this->uzytkownik;
+    }
+
+    /**
+     * Set film
+     *
+     * @param \SklepBundle\Entity\Film $film
+     * @return Zamowienie
+     */
+    public function setFilm(\SklepBundle\Entity\Film $film = null)
+    {
+        $this->film = $film;
+
+        return $this;
+    }
+
+    /**
+     * Get film
+     *
+     * @return \SklepBundle\Entity\Film 
+     */
+    public function getFilm()
+    {
+        return $this->film;
     }
 }
