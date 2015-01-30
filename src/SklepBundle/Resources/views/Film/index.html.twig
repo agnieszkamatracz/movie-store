@@ -6,31 +6,53 @@
 
 {% block body -%}
 
-    {% for entity in entities %}
-        <div class="row">
-            
-            <div class="thumbnail col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-                </a>
-                <div class="caption post-content">
-                <h3> {{ entity.tytul }} </h3>
+    {% if entities|length %}
+        {% for entity in entities %}
+
+            <div class="row">
+                
+                <div class="thumbnail col-md-7">
+                    <a href="#">
+                        <img class="img-responsive" src="http://placehold.it/700x300" alt="">
+                    </a>
+                    <div class="caption post-content">
+                    <h3> {{ entity.tytul }} </h3>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <ul class="breadcrumb">
+
+                    <li><a href="{{ path('film_id', {'id' : entity.kategoria.id }) }}">{{ entity.kategoria }}</a> 
+                        <span class="divider">/</span></li>
+                    <li class="active"> <strong>{{ entity.tytul }} </strong></li>
+                    </ul>
+                    
+                    <h4>Cena ${{ entity.cena }}</h4>
+                    <p>{{ entity.opis }} </p>
+                    <p> Aktorzy: {{ entity.aktorzy }}</p>
+                    <a class="btn btn-primary" href="{{ path('zamowienie_new', { 'id': entity.id }) }}">Zakup <span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
-            <div class="col-md-5">
-                <ul class="breadcrumb">
-                <li><a href="#">{{ entity.kategoria }}</a> 
-                    <span class="divider">/</span></li>
-                <li class="active"> <strong>{{ entity.tytul }} </strong></li>
-                </ul>
-                
-                <h4>Cena ${{ entity.cena }}</h4>
-                <p>{{ entity.opis }} </p>
-                <p> Aktorzy: {{ entity.aktorzy }}</p>
-                <a class="btn btn-primary" href="{{ path('zamowienie_new', { 'id': entity.id }) }}">Zakup <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    {% else %}
+                <div class="container">
+                    <div class="jumbotron col-md-8" >
+                        <h1> Witaj na stronie sklepu</h1>
+                        <p>
+                            Nie ma w tej kategorii dodanych żadnych filmów. Dodaj kategorie i pierwszy film aby zacząć korzystać ze sklepu.
+                        </p>
+                        <p>
+                            {% if zalogowany %}
+                                <a class="btn btn-primary btn-large" data-toggle="modal" data-target="#nowyFilm" href="#">Dodaj nowy</a> <a class="btn btn-primary btn-large" data-toggle="modal" data-target="#nowaKategoria" href="#">Dodaj kategorie</a>
+                            {% else %}
+                                <a class="btn btn-primary btn-large disabled" data-toggle="tooltip" data-title="Najpierw się zaloguj jako administrator!" ref="#">Dodaj nowy</a>
+                                <a class="btn btn-primary btn-large disabled" data-toggle="tooltip" data-title="Najpierw się zaloguj jako administrator!" ref="#">Dodaj kategorie</a>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+             
+    {% endif %}
 {% endblock %}
 {#
 {% block body -%}

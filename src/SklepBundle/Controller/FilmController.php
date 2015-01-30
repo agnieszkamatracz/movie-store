@@ -22,7 +22,7 @@ class FilmController extends Controller
 {
 
     /**
-     * Lists all Film entities.
+     * Lista wszystkich filmów
      *
      * @Route("/", name="film")
      * @Method("GET")
@@ -38,6 +38,31 @@ class FilmController extends Controller
             'entities' => $entities,
         );
     }
+
+    /**
+     * Wyszkukiwanie po id
+     *
+     * @Route("/{id}", name="film_id")
+     * @Method("GET")
+     * @Template("SklepBundle:Film:index.html.twig")
+     */
+    public function byIdAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SklepBundle:Film')->findByKategoria($id);
+
+        return array(
+            'entities' => $entities,
+        );
+    }
+
+    /*
+     WSZYSTKO NIŻEJ WYGENEROWAŁO SYMFONY
+    */
+
+
+
     /**
      * Creates a new Film entity.
      *
