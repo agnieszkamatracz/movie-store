@@ -25,3 +25,6 @@ security:
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/zamowienie/, role: ROLE_USER }
+        - { path: ^/film/, role: ROLE_USER }
+        - { path: ^/kategoria/, role: ROLE_USER }
