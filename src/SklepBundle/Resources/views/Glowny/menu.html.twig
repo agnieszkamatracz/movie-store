@@ -14,9 +14,10 @@
                     <li class="divider"> </li>
                     {# sprawdź czy użytkownik jest zalogowany, jeśli tak wyświetl rozszrzeone menu #}
                     {% if zalogowany == false %}
-                        <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować jako administrator!"><a class="disabled" href="{{ path('kategoria_new') }}">Dodaj nową</a></li>
+                        <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować jako administrator!">
+                            <a class="disabled" href="#">Dodaj nową</a></li>
                     {% else %}
-                        <li><a href="{{ path('kategoria_new') }}">Dodaj nową</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#nowaKategoria">Dodaj nową</a></li>
                     {% endif %} 
                 </ul>
             </li>
@@ -28,7 +29,7 @@
                     {% if zalogowany == false %}
                         <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Musisz się zalogować jako administrator!"><a class='disabled'>Dodaj nowy</a></li>
                     {% else %}
-                    <li><a href="{{ path('film_new') }}">Dodaj nowy</a></li>
+                    <li><a data-toggle="modal" data-target="#nowyFilm" href="#">Dodaj nowy</a></li>
                     {% endif %}
                         <li class="disabled" data-placement="bottom" data-toggle="tooltip" data-title="Strona w trakcie przygotowań"><a class="disabled">Zarządzaj</a></li>
                 </ul>

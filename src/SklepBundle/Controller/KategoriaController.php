@@ -52,8 +52,8 @@ class KategoriaController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
-
-            return $this->redirect($this->generateUrl('kategoria_show', array('id' => $entity->getId())));
+            // przekieruj z powrotem na główną
+            return $this->redirect($this->generateUrl('glowna'));
         }
 
         return array(

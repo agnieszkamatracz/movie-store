@@ -56,11 +56,9 @@
         <!-- /.row -->
 
         <!-- Project One -->
-        {# załaduj filmy #}
-        {% block body %}
-            
-        {% endblock %}        
-       
+        {# blok z zawartością strony #}
+        {% block body %}{% endblock %}        
+        
 
         <hr>
 
@@ -76,7 +74,15 @@
 
     </div>
     <!-- /.container -->
-    
+    {# Tworzy okna modalne (do tworzenia kategori, dodawania nowego filmu) #}
+    {% if zalogowany %}
+        
+        {# załącz okno modalne nowej kategori #}
+        {% render(controller('SklepBundle:Kategoria:new')) %}        
+        {% render(controller('SklepBundle:Film:new')) %}     
+    {% endif %}
+
+
     <script src="{{ asset('bundles/sklep/js/jquery.js') }}"></script>
     <script src="{{ asset('bundles/sklep/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript">

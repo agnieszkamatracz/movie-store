@@ -1,15 +1,47 @@
-{% extends '::base.html.twig' %}
+{# okno modalne nowego filmu #}
 
-{% block body -%}
-    <h1>Film creation</h1>
+<div class="modal fade" id="nowyFilm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        	<span aria-hidden="true">&times;</span></button>
+        	<h4 class="modal-title">Nowa film</h4>
+      </div>
+      <div class="modal-body">
 
-    {{ form(form) }}
+		   		 {# RENDEROWANIE NOWEJ FORM #}
+			    {# ŁADNIE SFORMATOWANA #}		    			 
+			    {{ form_start(form) }}
+				   {{ form_row(form.tytul, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj tytuł',
+				    'required' : 'required'
+					}) }}
+					
+					{# niech nie pokazuje submit'a przeslemy forme przez Javascirpt #}
+				{{ form_row(form.submit, {
+					'attr': { 'style': 'display:none' }
+				}) }}
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('film') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+			    {{ form_end(form) }}
+
+			</ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Anuluj</button>
+        <button type="button" class="btn btn-primary" id="dodajNowa">Dodaj nowy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+$('#dodajNowa').click(function() {
+  
+    // Utwórz nową kategorie
+    $('form[name="{{ form.vars.name }}"] button').click();
+  
+});
+</script>

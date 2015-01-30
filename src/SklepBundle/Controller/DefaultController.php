@@ -15,6 +15,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return array();
+
+    	// Zwracamy kontroler wyświetlania filmów
+    	$response = $this->forward('SklepBundle:Film:index');
+        return  $response;
     }
 }
