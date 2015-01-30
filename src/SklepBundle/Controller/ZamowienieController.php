@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use SklepBundle\Entity\Zamowienie;
 use SklepBundle\Form\ZamowienieType;
-
+use Symfony\Component\HttpFoundation\Response;
 /**
  * Zamowienie controller.
  *
@@ -17,7 +17,7 @@ use SklepBundle\Form\ZamowienieType;
  */
 class ZamowienieController extends Controller
 {
-
+    
     /**
      * Lists all Zamowienie entities.
      *
@@ -28,7 +28,9 @@ class ZamowienieController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
-
+        $response = new Response();
+        $response->headers->set('x-frame-options', 'deny');
+        $response->send();
         $entities = $em->getRepository('SklepBundle:Zamowienie')->findAll();
 
         return array(
