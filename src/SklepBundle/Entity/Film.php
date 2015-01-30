@@ -31,14 +31,14 @@ class Film
     /**
      * @var string
      *
-     * @ORM\Column(name="cena", type="decimal")
+     * @ORM\Column(name="cena", type="decimal", scale=2)
      */
     private $cena;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="opis", type="string", length=255)
+     * @ORM\Column(name="opis", type="text")
      */
     private $opis;
 
