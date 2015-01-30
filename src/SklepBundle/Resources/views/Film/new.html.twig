@@ -15,11 +15,30 @@
 			    {{ form_start(form) }}
 				   {{ form_row(form.tytul, {
 				    'attr': { 'class': 'form-control' },
-				    'label': 'Podaj tytuł',
-				    'required' : 'required'
+				    'label': 'Podaj tytuł'
 					}) }}
-					
-					{# niech nie pokazuje submit'a przeslemy forme przez Javascirpt #}
+
+				   {{ form_row(form.opis, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj opis'
+					}) }}
+
+				   {{ form_row(form.cena, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj cene'
+					}) }}
+
+				   {{ form_row(form.aktorzy, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Podaj aktorów'
+					}) }}
+
+				   {{ form_row(form.kategoria, {
+				    'attr': { 'class': 'form-control' },
+				    'label': 'Wybierz kategorie'
+					}) }}
+
+				{# niech nie pokazuje submit'a przeslemy forme przez Javascirpt #}
 				{{ form_row(form.submit, {
 					'attr': { 'style': 'display:none' }
 				}) }}
