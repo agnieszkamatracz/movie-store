@@ -30,7 +30,7 @@ class Zamowienie
 
     /**
      * Jednokierunkowe połączenie z tabelą film, w razie usunięcia kategori zmieni na null
-     * @ORM\Column(name="filmId", nullable=true)
+     * @ORM\Column(name="film", nullable=true)
      * @ORM\OneToOne(targetEntity="Film")
      **/
     private $film;

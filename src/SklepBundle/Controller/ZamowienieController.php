@@ -38,7 +38,7 @@ class ZamowienieController extends Controller
         );
     }
     /**
-     * Creates a new Zamowienie entity.
+     * Skladamy nowe zamówienei
      *
      * @Route("/", name="zamowienie_create")
      * @Method("POST")
@@ -47,8 +47,7 @@ class ZamowienieController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Zamowienie();
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $entity->setUzytkownik($user);
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -88,15 +87,20 @@ class ZamowienieController extends Controller
     /**
      * Displays a form to create a new Zamowienie entity.
      *
-     * @Route("/new", name="zamowienie_new")
+     * @Route("/new/{id}", name="zamowienie_new")
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction($id)
     {
         $entity = new Zamowienie();
-        
+        // Ustaw użytkownika na obecnego przy nowym zamówienie
         $entity->setUzytkownik($this->getUser());
+
+        $em = $this->getDoctrine()->getManager();
+        
+
+
         $form   = $this->createCreateForm($entity);
 
         return array(
