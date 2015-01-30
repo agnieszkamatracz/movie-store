@@ -1,3 +1,7 @@
+{% for entity in entities %}
+    <li><a href="{{ path('kategoria_show', { 'id': entity.id }) }}">{{ entity.nazwa }}</a></li>
+{% endfor %}
+{# OLD  
 {% extends '::base.html.twig' %}
 
 {% block body -%}
@@ -39,3 +43,4 @@
         </li>
     </ul>
     {% endblock %}
+#}

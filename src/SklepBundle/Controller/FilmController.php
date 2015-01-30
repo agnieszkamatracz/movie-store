@@ -10,9 +10,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use SklepBundle\Entity\Film;
 use SklepBundle\Form\FilmType;
 
+// DOMYŚLNY KONTROLLER "/"
+// KONTROLER DODWANIA/EDYCJI/KASOWANIA FILMOW
+
 /**
  * Film controller.
- *
+ * WSZYSTKIE STRONY Z PRZEDROSTKIEM:
  * @Route("/film")
  */
 class FilmController extends Controller
