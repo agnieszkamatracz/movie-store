@@ -69,6 +69,11 @@ class Film
         return $this->kategoria;
     }
 
+    public function __toString()
+    {
+        return $this->tytul;
+    }
+
     /*
     Wszystko niżej wygnerowało symfony
     *
