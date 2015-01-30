@@ -98,7 +98,9 @@ class ZamowienieController extends Controller
         $entity->setUzytkownik($this->getUser());
 
         $em = $this->getDoctrine()->getManager();
-        
+        $film = $em->getRepository('SklepBundle:Film')->findOneById($id);
+        // Ustaw film
+        $entity->setFilm($film);
 
 
         $form   = $this->createCreateForm($entity);
